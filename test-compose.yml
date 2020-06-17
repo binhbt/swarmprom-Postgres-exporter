@@ -1,0 +1,26 @@
+version: "3.3"
+
+networks:
+  net:
+    driver: overlay
+    attachable: true
+  mon_net:
+    external: true
+
+services:
+
+  prometheus:
+    image: stefanprodan1/swarmprom-prometheus:v2.5.0
+    build: ./prometheus
+    networks:
+      - net
+
+
+  grafana:
+    build: ./grafana
+    image: stefanprodan1/swarmprom-grafana:5.3.4
+    networks:
+      - net
+
+
+  
